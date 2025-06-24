@@ -22,11 +22,12 @@ class StoreProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'code' => 'required|string|max:50|unique:products,code',
-            'name' => 'required|string|max:250',
-            'quantity' => 'required|integer|min:1|max:10000',
-            'price' => 'required',
-            'description' => 'nullable|string'
+            'code'        => 'required|string|max:50|unique:products,code', // Must be unique and no more than 50 chars
+            'name'        => 'required|string|max:250',                    // Required name up to 250 characters
+            'quantity'    => 'required|integer|min:1|max:10000',          // Must be an integer between 1 and 10,000
+            'price'       => 'required',                                  // Required (should ideally be numeric/decimal validated too)
+            'description' => 'nullable|string',                           // Optional text
+            'filelink' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ];
     }
 }
